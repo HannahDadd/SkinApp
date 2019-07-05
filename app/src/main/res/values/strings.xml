@@ -1,0 +1,4 @@
+<resources>
+    <string name="app_name">SkinApp</string>
+    <string name="title_activity_scan_me">ScanMe</string>
+</resources>
