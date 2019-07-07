@@ -1,6 +1,7 @@
 package com.example.hanna.skinapp
 
 import android.content.Intent
+import android.graphics.Bitmap
 import android.os.Bundle
 import android.provider.MediaStore
 import android.support.design.widget.Snackbar
@@ -30,4 +31,14 @@ class ScanMe : AppCompatActivity() {
             }
         }
     }
+
+    // Get thumbnail of picture returned from camera app
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent) {
+        if (requestCode == 1 && resultCode == RESULT_OK) {
+            val imageBitmap = data.extras.get("data") as Bitmap
+            imageView.setImageBitmap(imageBitmap)
+        }
+    }
+
+    
 }
