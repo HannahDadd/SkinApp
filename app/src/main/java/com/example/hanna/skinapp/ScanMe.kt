@@ -1,8 +1,11 @@
 package com.example.hanna.skinapp
 
+import android.content.Intent
 import android.os.Bundle
+import android.provider.MediaStore
 import android.support.design.widget.Snackbar
 import android.support.v7.app.AppCompatActivity
+import android.view.View
 
 import kotlinx.android.synthetic.main.activity_scan_me.*
 
@@ -13,10 +16,18 @@ class ScanMe : AppCompatActivity() {
         setContentView(R.layout.activity_scan_me)
         setSupportActionBar(toolbar)
 
+        // When you click the button it takes a picture
         fab.setOnClickListener { view ->
-            Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                    .setAction("Action", null).show()
+            dispatchTakePictureIntent()
         }
     }
 
+    // Take a picture
+    private fun dispatchTakePictureIntent() {
+        Intent(MediaStore.ACTION_IMAGE_CAPTURE).also { takePictureIntent ->
+            takePictureIntent.resolveActivity(packageManager)?.also {
+                startActivityForResult(takePictureIntent, 1)
+            }
+        }
+    }
 }
